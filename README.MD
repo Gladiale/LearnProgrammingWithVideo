@@ -3,3 +3,4 @@
 ```
 pyinstaller main.py --noconsole --icon=favicon.ico
 ```
+![view](./README.png)
