@@ -7,12 +7,13 @@ json_open = open("config.json", "r")
 json_load = json.load(json_open)
 
 videoData = json_load["video_coordinates"]
-editorData = json_load["editor_coordinates"]
 keyData = json_load['hot_key']
 
 def click_target():
+    # 現在の座標を取得
+    mouseX, mouseY = pyautogui.position()
     pyautogui.click(videoData["x"], videoData["y"])
-    pyautogui.click(editorData["x"], editorData["y"])
+    pyautogui.click(mouseX, mouseY)
 
 def main(page: ft.Page):
     page.title = "LeaningProgram"
@@ -32,7 +33,6 @@ def main(page: ft.Page):
     screen_size = ft.Text(f"画面サイズ: x {x}px, y {y}px")
     
     video_coordinates = ft.Text(f"動画設定座標: x {videoData['x']}px, y {videoData['y']}px")
-    edit_coordinates = ft.Text(f"エディタ設定座標: x {editorData['x']}px, y {editorData['y']}px")
     hot_key = ft.Text(f"ホットキー: {keyData}")
 
     content = ft.Column(
@@ -40,8 +40,6 @@ def main(page: ft.Page):
             screen_size, 
             ft.Divider(height=1, color=ft.colors.PURPLE_400),
             video_coordinates,
-            ft.Divider(height=1, color=ft.colors.PURPLE_400),
-            edit_coordinates,
             ft.Divider(height=1, color=ft.colors.PURPLE_400),
             hot_key
         ],
