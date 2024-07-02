@@ -8,6 +8,7 @@ with open("config.json", "r") as json_open:
     json_load = json.load(json_open)
 hot_key = json_load['hot_key']
 delay = json_load["delay"]
+bg_image = json_load["bg_image"]
 
 # 目標サイト
 target_site = {
@@ -29,10 +30,10 @@ def click_target():
     keyboard.release('alt')
 
 def main(page: ft.Page):
-    page.title = "HelperCodingLearning"
+    page.title = "7thHeaven"
     page.window.width = 320
-    page.window.height = 180
-    page.padding = 10
+    page.window.height = 210
+    page.padding = 0
     page.spacing = 0
     page.window.resizable = False  # ウインドウサイズ変更可否
     page.window.center()  # ウィンドウをデスクトップの中心に移動
@@ -92,7 +93,14 @@ def main(page: ft.Page):
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
     )
 
-    page.add(content)
+    page.add(ft.Container(
+            image_src=bg_image,
+            image_fit=ft.ImageFit.COVER,
+            image_opacity=0.9,
+            expand=True,
+            padding=10,
+            content=content
+        ))
 
     # suppress=True を設置することで、パソコンデフォルトのHotkeyの抑制可能
     # trigger_on_releaseこのオプションをTrueに設定すると、ホットキーの動作はキーが離されたときに実行されます(Hotkey抑制できない問題を完全に解決できる)

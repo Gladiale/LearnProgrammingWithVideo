@@ -1,4 +1,5 @@
 {
   "hot_key": "f1",
-  "delay": 0.6
+  "delay": 0.6,
+  "bg_image": "./images/bg_ver2.png"
 }
